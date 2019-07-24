@@ -69,10 +69,6 @@ func (t *TDigest) AddCentroid(c Centroid) {
 	}
 }
 
-func (t *TDigest) Process() {
-	t.process()
-}
-
 func (t *TDigest) Export() CentroidList {
 	t.process()
 	return t.processed.Clone()
