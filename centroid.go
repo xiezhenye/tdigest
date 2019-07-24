@@ -49,9 +49,7 @@ func (l *CentroidList) Clear() {
 
 func (l *CentroidList) Clone() CentroidList {
 	ret := make([]Centroid, len(*l))
-	for _, c := range(*l) {
-		ret = append(ret, c)
-	}
+	copy(ret, *l)
 	return ret
 }
 
