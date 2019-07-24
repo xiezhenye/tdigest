@@ -47,6 +47,14 @@ func (l *CentroidList) Clear() {
 	*l = (*l)[0:0]
 }
 
+func (l *CentroidList) Clone() CentroidList {
+	ret := make([]Centroid, len(*l))
+	for _, c := range(*l) {
+		ret = append(ret, c)
+	}
+	return ret
+}
+
 func (l CentroidList) Len() int           { return len(l) }
 func (l CentroidList) Less(i, j int) bool { return l[i].Mean < l[j].Mean }
 func (l CentroidList) Swap(i, j int)      { l[i], l[j] = l[j], l[i] }

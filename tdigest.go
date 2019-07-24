@@ -1,6 +1,7 @@
 package tdigest
 
 import (
+	"fmt"
 	"math"
 	"sort"
 )
@@ -66,6 +67,19 @@ func (t *TDigest) AddCentroid(c Centroid) {
 		t.unprocessed.Len() > t.maxUnprocessed {
 		t.process()
 	}
+}
+
+func (t *TDigest) Process() {
+	t.process()
+}
+
+func (t *TDigest) Export() CentroidList {
+	t.process()
+	return t.processed.Clone()
+}
+
+func (t *TDigest) String() string {
+	return fmt.Sprintf("{processed: %v, unprocessed: %v}", t.processed, t.unprocessed)
 }
 
 func (t *TDigest) process() {
